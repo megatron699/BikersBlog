@@ -1,0 +1,134 @@
+﻿@model RealBlog.Models.User
+@{
+    ViewBag.Title = "Регистрация";
+}
+
+<div class="my-panel wide-panel">
+    <div class="my-panel-header">
+        <div class="my-header-text">
+        Регистрация
+            </div>
+    </div>
+    <div class="panel-body ">
+        @using (Html.BeginForm("Register", "Register", FormMethod.Post, new { enctype = "multipart/form-data"}))
+        {
+        <form>
+            <table width="100%" border="0" class="my-table">
+                <tr>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.NickName)
+
+                        @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control", title = "От 3 до 20 символов. Латиница, кириллица, цифры и подчёркивания" } })
+                        @Html.ValidationMessageFor(model => model.NickName, "", new { @class = "text-danger" })
+                    </td>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.Email)
+
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.Password)
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password", title = "От 6 до 20 символов. Латиница, кириллица, цифры и подчёркивания" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </td>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.FirstName)
+
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.PasswordConfirm)
+
+                        @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                        @Html.ValidationMessageFor(model => model.PasswordConfirm, "", new { @class = "text-danger" })
+                    </td>
+                    <td valign="top">
+
+                        @Html.LabelFor(model => model.LastName)
+
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+
+                        @Html.LabelFor(model => model.ContactInfo)
+                        <br>
+                        @Html.TextAreaFor(model => model.ContactInfo, new { htmlAttributes = new { @class = "form-control", @rows="4"} })
+                        <div class="text-danger">
+                        @Html.ValidationMessageFor(model => model.ContactInfo)
+                            </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+
+                        @Html.LabelFor(model => model.BikeSecification)
+                        <br>
+                        @Html.TextAreaFor(model => model.BikeSecification, new { htmlAttributes = new { @class = "form-control", @rows="4" } })
+                        @Html.ValidationMessageFor(model => model.BikeSecification, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+
+                        @Html.LabelFor(model => model.Hobbies)
+                        <br>
+                        @Html.TextAreaFor(model => model.Hobbies,  new { htmlAttributes = new { @class = "form-control", @rows="4   " } })
+                        @Html.ValidationMessageFor(model => model.Hobbies, "", new { @class = "text-danger" })
+
+                    </td>
+                </tr>
+
+                <tr>
+                <td colspan="2">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label class="my-gray-text">
+                                * - поля, обязательные для заполнения
+                                </label>
+                                </td>
+                            <td>
+                                <label class="btn btn-default">
+                                    Выберите фото
+                                    <input name="imageData" type="file" hidden accept="image/x-png,image/gif,image/jpeg" />
+                                </label>
+                               
+                                    @Html.ValidationMessageFor(model => model.PhotoUrl, "", new { @class = "text-danger" })
+                                </td>
+                            <td>
+                            <button type="submit" class="btn button-gray btn-block">
+                                Зарегистрироваться
+                                </button>
+                            </td>
+                              </tr>
+                        </table>
+                    </tr>
+                </table>
+                                 
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                
+</form>
+        }
+        </div>
+    </div>
+ 
+
+<div class="tiny-panel">
+    Уже есть аккаунт?
+    @Html.ActionLink("Войти", "Index", "Home",
+    routeValues: null, htmlAttributes: new { @class = "btn button-grey", @role = "button" })
+</div>

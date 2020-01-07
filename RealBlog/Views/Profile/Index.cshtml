@@ -1,0 +1,83 @@
+﻿
+@using RealBlog.Models
+@using RealBlog.Models.ViewModel
+@{
+    ViewBag.Title = "Профиль";
+}
+@{
+    ProfileViewModel profileView = ViewBag.ProfileView;
+    Html.RenderPartial("Profile", profileView);
+}
+@if (Convert.ToInt32(Session["UserId"]) == ProfileViewModel.Id)
+{
+    PostViewModel postView = ViewBag.PostView;
+    Html.RenderPartial("Post", postView);
+}
+@if (ViewBag.Posts.Count == 0)
+{
+    <div class="my-panel wide-panel">
+        <div class="my-panel-header">
+            <div class="my-header-text">
+                Здесь пока ничего нет...
+            </div>
+        </div>
+        @if (Convert.ToInt32(Session["UserId"]) == ProfileViewModel.Id)
+        {
+            <p class="my-panel-body">Вы ещё не опубликовали ни одной записи.</p>
+        }
+        else
+        {
+            <p class="my-panel-body">Этот пользователь ещё не опубликовал ни одной записи.</p>
+        }
+    </div>
+}
+else
+{
+    foreach (var post in ViewBag.Posts)
+    {
+    @PostHelper(post)
+    }
+}
+@helper PostHelper(Post post)
+{
+
+<div class="my-panel wide-panel">
+    <div class="my-panel-header">
+        <table border="0">
+            <tr>
+                <td rowspan="2" width="25">
+
+                    @if (post.Author.PhotoUrl != null)
+                    {
+                        <a href='@Url.Action("Index","Profile", new { id = @post.Author.Id }, null)'>
+                            <img class="avatar" src='@Url.Content(@post.Author.PhotoUrl)' />
+                        </a>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Index", "Profile", new { id = post.Author.Id }, null)" class="my-link">
+                        @post.Author.NickName
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="my-gray-text">@post.Date.ToString("dd.MM.yyyy в H:mm")</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="my-panel-body ">
+        <p>@post.Text</p>
+    </div>
+    @if (post.PhotoUrl != null)
+    {
+        <div>
+            <img src='@Url.Content(@post.PhotoUrl)' class="full-width" />
+        </div>
+    }
+    <div class="my-panel-footer"></div>
+</div>
+
+}

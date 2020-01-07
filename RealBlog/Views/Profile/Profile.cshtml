@@ -1,0 +1,154 @@
+﻿@model RealBlog.Models.ViewModel.ProfileViewModel
+@using RealBlog.Models.ViewModel
+@if (Session["UserId"] != null && Convert.ToInt32(Session["UserId"]) == ProfileViewModel.Id)
+{
+    <div class="my-panel-dark wide-panel">
+        @using (Html.BeginForm("Edit", "Profile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <table width="100%">
+                <tr>
+                    <td width="155" align="center" valign="top">
+                        
+                        @if (Model.PhotoUrl != null)
+                        {
+                            <img class="my-image" src="@Url.Content(Model.PhotoUrl.ToString())" width="100" />
+                        }
+                        else
+                        {<img class="my-image" src="@Url.Content("~/Content/Pictures/Upload/avatar.png")" width="100" />
+
+                        }
+                    <label class="btn btn-default">
+                        Сменить аватарку<input name="imageData" type="file" hidden accept="image/x-png,image/gif,image/jpeg" />
+                       
+                    </label>
+                       
+
+                    </td>
+                    <td>
+                        <div class="my-panel-light">
+
+                            <form>
+                                <table class="my-table" border="0">
+                                    <tr>
+                                        <td valign="top">
+                                            @Html.LabelFor(model => model.NickName, new { @class = "my-desc-text" })
+                                            @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control", @title = "От 3 до 20 символов. Латиница, кириллица, цифры и подчёркивания" } })
+                                            @Html.ValidationMessageFor(model => model.NickName)
+                                        </td>
+                                        <td valign="top">
+                                            @Html.LabelFor(model => model.FirstName, new { @class = "my-desc-text" })
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.FirstName)
+                                        </td>
+                                        <td valign="top">
+                                            @Html.LabelFor(model => model.LastName, new { @class = "my-desc-text" })
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.LastName)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            @Html.LabelFor(model => model.ContactInfo, new { @class = "my-desc-text" })
+                                            <br>
+                                            @Html.TextAreaFor(model => model.ContactInfo, new { htmlAttributes = new { @class = "form-control", @rows = "4", @maxlength = "4095" } })
+                                            @Html.ValidationMessageFor(model => model.ContactInfo)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            @Html.LabelFor(model => model.BikeSecification, new { @class = "my-desc-text" })
+                                            <br>
+                                            @Html.TextAreaFor(model => model.BikeSecification, new { htmlAttributes = new { @class = "form-control", @rows = "4" } })
+                                            @Html.ValidationMessageFor(model => model.BikeSecification)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            @Html.LabelFor(model => model.Hobbies, new { @class = "my-desc-text" })
+                                            <br>
+                                            @Html.TextAreaFor(model => model.Hobbies, new { htmlAttributes = new { @class = "form-control", @rows = "4" } })
+                                            @Html.ValidationMessageFor(model => model.Hobbies)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top">
+                                            @Html.Label("Новый пароль", new { @class = "my-desc-text" })
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "Password", @title = "От 6 до 30 символов. Латиница, цифры и подчёркивания" } })
+                                            @Html.ValidationMessageFor(model => model.Password)
+                                        </td>
+                                        <td valign="top">
+                                            @Html.LabelFor(model => model.PasswordConfirm, new { @class = "my-desc-text" })
+                                            @Html.EditorFor(model => model.PasswordConfirm, new { htmlAttributes = new { @class = "form-control", type = "Password", @title = "От 6 до 30 символов. Латиница, цифры и подчёркивания" } })
+                                            @Html.ValidationMessageFor(model => model.PasswordConfirm)
+                                        </td>
+                                        <td align="right" valign="bottom">
+                                            <button type="submit" class="btn button-grey">Сохранить изменения</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                       
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+}
+else
+{
+    <div class="my-panel-dark wide-panel">
+        <table width="100%">
+            <tr>
+                <td width="155" align="center" valign="top">
+                    @if (Model.PhotoUrl != null)
+                    {
+                        <img class="my-image" src="@Url.Content(Model.PhotoUrl.ToString())" width="100" />
+                    }
+                    <div class="my-link">
+                        @Model.NickName
+                    </div>
+                </td>
+                <td>
+                    <div class="my-panel-light">
+                        <table class="my-table">
+                            <tr>
+                                <td>
+                                    @Html.LabelFor(model => model.FirstName, new { @class = "my-desc-text" })
+                                    <br />
+                                    @Model.FirstName
+                                </td>
+                                <td>
+                                    @Html.LabelFor(model => model.LastName, new { @class = "my-desc-text" })
+                                    <br />
+                                    @Html.DisplayTextFor(model => model.LastName)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @Html.LabelFor(model => model.ContactInfo, new { @class = "my-desc-text" })
+                                    <br />
+                                    @Html.DisplayTextFor(model => model.ContactInfo)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @Html.LabelFor(model => model.BikeSecification, new { @class = "my-desc-text" })
+                                    <br />
+                                    @Html.DisplayTextFor(model => model.BikeSecification)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    @Html.LabelFor(model => model.Hobbies, new { @class = "my-desc-text" })
+                                    <br />
+                                    @Html.DisplayTextFor(model => model.Hobbies)
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+}

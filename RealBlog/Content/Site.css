@@ -1,0 +1,168 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+select{
+    max-width:200px;
+}
+
+.button-grey{
+    border-color:#aabacc;
+    color: #818283;
+    background-color: #dce4e9;
+    border-radius:0;
+    font-weight:bold;
+}
+.tiny-panel{
+   margin:20px auto;
+   width:300px;
+}
+.head-color{
+    background-color:#c7d2d9;
+    border-color:#aabacc;
+}
+textarea {
+    resize: none;
+    border-radius: 3px;
+    border-color: lightgray;
+    width: 100%;
+}
+.moto-image {
+    position: absolute;
+    width: 122px;
+    height: 124px;
+    left: 0px;
+    top: 0px;
+    background: url(image.png);
+}
+.full-width{
+    width:100%;
+}
+.avatar {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.search-field{
+    margin-top:4px;
+}
+.wide-panel {
+    margin: 20px auto;
+    width: 70%;
+}
+table.my-table {
+    border-collapse: separate;
+    border-spacing: 16px;
+}
+.my-gray-text {
+    color: #7E7E7E;
+    font-size: 12px;
+}
+.my-header-text {
+    color: #7E7E7E;
+    font-size: 16px;
+    margin: 7px;
+    font-weight: 500;
+}
+.my-panel {
+    border: 1px solid #D4D4D4;
+    margin: 20px auto;
+    background-color: #FFFFFF;
+}
+.my-panel-header {
+    border-bottom: 1px solid #D4D4D4;
+    background-color: #DCE4E9;
+    padding: 4px;
+}
+.my-gray-text {
+    color: #7E7E7E;
+    font-size: 12px;
+}
+[hidden]{
+    display:!important;
+}
+.gray-bar {
+    background-color: #c7d2d9;
+    border-color: #AABACC;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: black;
+    font-size: 15px;
+    font-family: Arial;
+}
+.fubar {
+    width: 1px;
+    height: 100%;
+    background-color: #AABACC;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+table.my-table2 {
+    border-collapse: separate;
+}
+.my-link {
+    color: #000000;
+    text-decoration: underline;
+    font-size: 16px;
+}
+.my-desc-text {
+    color: #7E7E7E;
+    font-size: 14px;
+    font-weight: 500;
+}
+.my-panel-body {
+    margin: 5px;
+}
+.my-subheader-text {
+    color: #7E7E7E;
+    font-size: 16px;
+    margin: 2px;
+    font-weight: 500;
+}
+.my-panel-footer {
+    border-top: 1px solid #D4D4D4;
+    background-color: #DCE4E9;
+    padding: 10px;
+}
+.my-panel-dark {
+    border: 1px solid #D4D4D4;
+    background-color: #DCE4E9;
+    padding-top: 8px;
+    margin-top: 35px;
+}
+.my-panel-light {
+    border-top: 1px solid #D4D4D4;
+    border-left: 1px solid #D4D4D4;
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.my-image {
+    height: 140px;
+    width: 140px;
+    box-shadow: 0 0 6px 0px rgba(0,0,0,0.5);
+    margin-bottom: 6px;
+}
+.custom-file-upload{
+    border:1px solid #ccc;
+    display: inline-block;
+    padding: 6px, 12px;
+    cursor: pointer;
+}

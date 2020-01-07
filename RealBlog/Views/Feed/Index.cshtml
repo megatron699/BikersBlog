@@ -1,0 +1,111 @@
+﻿@model RealBlog.Models.Post
+@using RealBlog.Models
+@{
+    ViewBag.Title = "Лента новостей";
+}
+
+<h2>Лента новостей</h2>
+
+@if (Session["UserId"] != null)
+{
+    <div class="my-panel wide-panel">
+        <div class="my-panel-header">
+            <div class="my-header-text">
+                Добавление новой записи
+            </div>
+        </div>
+        <div class="my-panel-body ">
+            @using (Html.BeginForm("AddPost", "Feed", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <form>
+                    <div class="form-group ">
+
+                        @Html.LabelFor(model => model.Text, new { @class = "my-subheader-text" })
+
+                        @Html.TextAreaFor(model => model.Text, 10, 40, new { htmlAttributes = new { @class = "form-control", @title = "Не более 4095 символов" } })
+                        @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                    </div>
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <label class="btn btn-default">
+                                    Выберите изображение<input name="imageData" type="file" hidden accept="image/x-png,image/gif,image/jpeg" />
+                                </label>
+                            </td>
+                            <td>
+
+                                <button type="submit" class="btn button-grey btn-block">Добавить</button>
+                            </td>
+                        </tr>
+                    </table>
+                    <div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                </form>
+            }
+
+        </div>
+    </div>
+
+}
+@if (ViewBag.Posts.Count == 0)
+{
+    <div class="my-panel wide-panel">
+        <div class="my-panel-header">
+            <div class="my-header-text">
+                Похожих постов не найдено
+            </div>
+        </div>
+
+        <p class="my-panel-body">Мы не смогли найти посты по вашему запросу</p>
+    </div>
+}
+else
+{
+    foreach (var post in ViewBag.Posts)
+    {
+        @PostHelper(post)
+    }
+}
+    @helper PostHelper(Post post)
+    {
+        <div class="my-panel wide-panel">
+            <div class="my-panel-header">
+                <table border="0">
+                    <tr>
+                        <td rowspan="2" width="25">
+
+                            @if (post.Author.PhotoUrl != null)
+                            {
+                                <a href='@Url.Action("Index","Profile", new { id = @post.Author.Id }, null)'>
+                                    <img class="avatar" src='@Url.Content(@post.Author.PhotoUrl)' />
+                                </a>
+                            }
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Index", "Profile", new { id = post.Author.Id }, null)" class="my-link">
+                                @post.Author.NickName
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="my-gray-text">@post.Date.ToString("dd.MM.yyyy в H:mm")</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="my-panel-body ">
+                <p>@post.Text</p>
+                </div>
+                @if (post.PhotoUrl != null)
+                {
+                    <div>
+                        <img src='@Url.Content(@post.PhotoUrl)' class="full-width" />
+                    </div>
+                }
+            <div class="my-panel-footer"></div>
+            </div>
+        
+    }

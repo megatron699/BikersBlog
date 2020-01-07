@@ -1,0 +1,65 @@
+﻿@model BikersBlog.Models.Driver
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Список</h2>
+@foreach (var driver in ViewBag.Drivers)
+{
+    @DriverHelper(driver);
+}
+<h2>Добавим нового водителя</h2>
+@using (Html.BeginForm("Create", "Driver", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)
+    <br>
+    @Html.LabelFor(model => model.LastName)
+    @Html.EditorFor(model => model.LastName)
+    <br>
+    @Html.LabelFor(model => model.Age)
+    @Html.EditorFor(model => model.Age)
+    <input class="btn btn-block" type="submit" value="Добавить" />
+}
+@helper DriverHelper(BikersBlog.Models.Driver driver)
+{
+    <div>
+        <div>
+            @driver.Id
+        </div>
+        <div>
+            @driver.Name
+        </div>
+        <div>
+            @driver.LastName
+        </div>
+        <div>
+            @driver.Age
+        </div>
+        @if (driver.Car != null)
+        {
+            <h4>Машина</h4>
+
+            <div>
+                @driver.Car.ModelName
+            </div>
+            <div>
+                @driver.Car.MaxSpeed
+            </div>
+        }
+        else
+        {
+            <h4>Нет машины!</h4>
+        }
+        <div>
+            @Html.ActionLink("Просмотреть", "DriverView", "Driver", new { id = driver.Id }, null)
+        </div>
+        <div>
+            @Html.ActionLink("Отредактировать", "DriverEd", "Driver", new { id = driver.Id }, null)
+        </div>
+
+    </div>
+    <hr>
+}

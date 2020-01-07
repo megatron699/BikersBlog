@@ -1,0 +1,13 @@
+﻿@model BikersBlog.Models.Car
+@{
+    ViewBag.Title = "Посмотреть";
+}
+
+<h2>Посмотреть</h2>
+
+@Html.LabelFor(model => model.ModelName)
+@Model.ModelName
+<br>
+@Html.LabelFor(model => model.MaxSpeed)
+@Model.MaxSpeed
+

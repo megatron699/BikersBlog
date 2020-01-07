@@ -1,0 +1,18 @@
+﻿@model BikersBlog.Models.Car
+@{
+    ViewBag.Title = "Отредактировать";
+}
+
+<h2>Отредактировать</h2>
+@using (Html.BeginForm("Second", "Detail", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.LabelFor(model => model.ModelName)
+    @Html.EditorFor(model => model.ModelName);
+    @Html.ValidationMessageFor(model => model.ModelName, "", new { @class = "text-danger" });
+    <br>
+    @Html.LabelFor(model => model.MaxSpeed)
+    @Html.EditorFor(model => model.MaxSpeed);
+    @Html.ValidationMessageFor(model => model.MaxSpeed, "", new { @class = "text-danger" });
+    <input class="btn btn-block" type="submit" value="Сохранить" />
+
+}

@@ -1,0 +1,15 @@
+﻿@model BikersBlog.Models.Driver
+@{
+    ViewBag.Title = "DriverView";
+}
+
+<h2>DriverView</h2>
+
+@Html.LabelFor(model => model.Name)
+@Model.Name
+<br>
+@Html.LabelFor(model => model.LastName)
+@Model.LastName
+<br>
+@Html.LabelFor(model => model.Age)
+@Model.Age
